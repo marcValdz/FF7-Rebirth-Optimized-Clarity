@@ -24,19 +24,13 @@ Internally known as `sg.SkeletalMeshQuality`, this setting controls the NPC LOD.
 |--|--|--|--|
 |`r.SkeletalMeshLODBias`|0 (0.1)|0 (0)|Higher values make the NPCs look like they're from the PS2 era. No noticeable performance impact.|
 
-## Texture Resolution (Shadow Quality)
-Internally known as `sg.TextureQuality`, this setting controls the texture poolsize, and with this mod, it also controls the shadow map resolution.
-
-|Setting|Low|Medium|High||
-|--|--|--|--|--|
-|`r.Shadow.MaxCSMResolution`|2048 (-)|4096 (-)|8192 (-)|A value of 8192 is very expensive but it does improve shadows substantially. Any values greater than 8192 breaks the shadows. Likewise, values lower than 2048 are too low to properly display shadows.|
-|`r.Shadow.CSM.TransitionScale`|2 (-)|2 (-)|2 (-)|Unfortunately, the game doesn't allow increasing the shadow distance which limits how far the sharpest shadow cascade can be displayed. This setting should help hide the transition.|
-
 # Engine.ini Tweaks
-These are optional cvars that aren't scalable. Unfortunately, we can only do so much to mitigate TAA's blurriness.
+These are optional cvars that aren't scalable. Unfortunately, we can only do so much to mitigate TAA's blurriness. UPDATE: Also moved shadow quality here.
 
 |Setting|Value||
 |--|--|--|
+|`r.Shadow.MaxCSMResolution`|2048/4096/8192|A value of 8192 is very expensive but it does improve shadows substantially. Any values greater than 8192 breaks the shadows. Likewise, values lower than 2048 are too low to properly display shadows.|
+|`r.Shadow.CSM.TransitionScale`|2|Unfortunately, the game doesn't allow increasing the shadow distance which limits how far the sharpest shadow cascade can be displayed. This setting should help hide the transition.|
 |`r.TemporalAASamples`|2 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of higher (but arguably unnoticeable) geometric aliasing, especially at lower resolutions.|
 |`r.TemporalAA.FilterSize.Alternative`|0.05 (1)|Anything lower will cause the whole screen to flicker or go black. It is dependent on the value above.|
 
