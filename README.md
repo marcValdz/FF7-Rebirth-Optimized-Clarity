@@ -11,12 +11,12 @@ Internally known as `sg.StaticMeshQuality`, this setting controls the LOD of eve
 |--|--|--|--|--|--|
 |`r.Streaming.MassiveEnvironmentMipBiasForDeformMeshlets`|2 (-)|1 (-)|0 (-)|0 (-)|Higher values theoretically improve performance at the cost of worse quality mipmaps of animated objects (e.g. swaying tree trunks). Values above 2 or negative values completely cull these animated polygons.|
 |`r.Streaming.MassiveEnvironmentMipBias`|2 (-)|1 (-)|0 (-)|0 (-)|Higher values theoretically improve performance at the cost of worse quality mipmaps of animated objects (e.g. swaying tree trunks). Values above 2 or negative values completely cull these animated polygons.|
-|`r.MeshletCulling.ViewLODScale`|1 (-)|1 (-)|1 (-)|1 (-)|Controls the LOD of light emitting Objects (e.g. light poles, lamps).|
-|`r.MassiveEnvironment.SimpleInstanceLODScale`|0.001 (-)|0.001 (-)|0.001 (-)|16 (-)|Controls the distance at mips transition. This value requires the `r.MassiveEnvironment.LODFixedViewHeight` to be 1/4 the vertical screen resolution (360p @ 1440p) to mitigate the grass flickering issue. It might still occur but I found the specific angle to be quite difficult to find. A value of `0.001` mitigates pop-in, and has no grass flickering issue, at the cost of forcing the lowest quality vegetation mips.|
-|`r.MassiveEnvironment.CoverageLODScale`|0.1 (-)|0.2 (-)|1 (-)|1 (-)|Controls the LOD of ALL vegetation. It also messes with the value above.|
-|`r.MassiveEnvironment.SolidLODScale`|0.2 (-)|0.3 (-)|0.6 (-)|1 (-)|Controls the LOD of Rocks and Buildings.|
-|`r.MassiveEnvironment.ViewLODScale`|1 (0.1)|1 (0.15)|1 (0.2)|1 (0.15)|Controls the LOD of every object within the MassiveEnvironment system.|
-|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.01 (0.05)|0.01 (0.025)|0.01 (0.015)|0.01 (0.01)|Controls the vegetation draw distance.|
+|`r.MeshletCulling.ViewLODScale`|1 (0.2)|1 (0.2)|1 (0.2)|1 (0.2)|Controls the LOD of light emitting Objects (e.g. light poles, lamps).|
+|`r.MassiveEnvironment.SimpleInstanceLODScale`|0.005 (-)|0.05 (-)|8 (-)|4 (-)|Separately controls the grass mip transition distance. The main cause of pop-in near the player's feet.|
+|`r.MassiveEnvironment.CoverageLODScale`|0.1 (-)|0.2 (-)|1 (-)|1 (-)|Controls the LOD of ALL vegetation (trees & grass). Affects the value above.|
+|`r.MassiveEnvironment.SolidLODScale`|0.2 (-)|0.3 (-)|1 (-)|1 (-)|Controls the LOD of Rocks and Buildings.|
+|`r.MassiveEnvironment.ViewLODScale`|1 (0.1)|1 (0.15)|0.3 (0.2)|0.5 (0.15)|Controls the LOD of every object within the MassiveEnvironment system. Encompasses both `CoverageLODScale` and `SolidLODScale` into a single value. These four LODScale values have a sort of 'budget' that needs to be balanced between each other, otherwise the dreaded grass flickering issue would occur.|
+|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.01 (0.05)|0.01 (0.025)|0.01 (0.015)|0.01 (0.01)|Controls the vegetation draw distance. No performance difference, yet causes an insane amount of pop-in.|
 
 ## Character Model Detail
 Internally known as `sg.SkeletalMeshQuality`, this setting controls the NPC LOD.
@@ -32,7 +32,10 @@ These are optional cvars that aren't scalable. Unfortunately, we can only do so 
 |--|--|--|
 |`r.Shadow.MaxCSMResolution`|2048/4096/8192|A value of 8192 is very expensive but it does improve shadows substantially. Any values greater than 8192 breaks the shadows. Likewise, values lower than 2048 are too low to properly display shadows.|
 |`r.Shadow.CSM.TransitionScale`|2|Unfortunately, the game doesn't allow increasing the shadow distance which limits how far the sharpest shadow cascade can be displayed. This setting should help hide the transition.|
-|`r.MassiveEnvironment.LODFixedViewHeight`|360|This value is entirely dependent upon your screen's vertical resolution. The visual differences aren't very noticeable until we reach 1/8th of it (180p for 1440p). Surprisingly, this setting is controlled by the Background Model Detail setting. For all resolutions <= 1080p, this value will be equal to your vertical resolution. For some reason though at resolutions >= 1440p, only Best sets this value to equal to your vertical resolution, while High to Low sets this value to 1080.|
+|`r.VolumetricFog.DepthDistributionScale`|32 (32)| Too high or too low a value increases the jitter. Low values also affect the 'intensity' of the fog.|
+|`r.VolumetricFog.GridDivisor`|256| (120)|Decreases the percievable noise. Lower values increases noise and jitter, while higher values "supersamples" the fog resolution.|
+|`r.VolumetricFog.GridSizeZ`|128 (128)|Controls the fog resolution. Higher values are more intense.|
+|`r.MassiveEnvironment.UseHZBControlPoints`|0 (1)|A performance optimization to cull occluded objects. A lower quality mip will be loaded until the occluding object is removed out of the way. Unfortunately, this movement often causes the mip to jump quality, causing a pop-in. Costs about 2fps.|
 |`r.TemporalAASamples`|2 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of higher (but arguably unnoticeable) geometric aliasing, especially at lower resolutions.|
 |`r.TemporalAA.FilterSize.Alternative`|0.05 (1)|Anything lower will cause the whole screen to flicker or go black. It is dependent on the value above.|
 
