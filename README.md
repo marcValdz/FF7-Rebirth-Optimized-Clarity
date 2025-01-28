@@ -25,17 +25,23 @@ Internally known as `sg.SkeletalMeshQuality`, this setting controls the NPC LOD.
 |--|--|--|--|
 |`r.SkeletalMeshLODBias`|0 (0.1)|0 (0)|Higher values make the NPCs look like they're from the PS2 era. No noticeable performance impact.|
 
+## Fog Quality
+|Setting|Low|High||
+|--|--|--|--|
+|`r.VolumetricFog.CheckerBoard`|1|0|Setting this to Low makes the volumetric fog use checkerboard rendering to save some FPS at the cost of increased flickering, pixelation, jitter, and ghosting near fog emitting objects.|
+
 # Engine.ini Tweaks
 These are optional cvars that aren't scalable. Unfortunately, we can only do so much to mitigate TAA's blurriness. UPDATE: Also moved shadow quality here.
 
 |Setting|Value||
 |--|--|--|
+|`r.Shadow.MaxResolution`|8 (2048)|Anything lower than 8 crashes the game. Slightly improves performance without seemingly any visual difference.|
 |`r.Shadow.MaxCSMResolution`|2048/4096/8192|A value of 8192 is very expensive but it does improve shadows substantially. Any values greater than 8192 breaks the shadows. Likewise, values lower than 2048 are too low to properly display shadows.|
 |`r.Shadow.CSM.TransitionScale`|2|Unfortunately, the game doesn't allow increasing the shadow distance which limits how far the sharpest shadow cascade can be displayed. This setting should help hide the transition.|
 |`r.VolumetricFog.DepthDistributionScale`|32 (32)| Too high or too low a value increases the jitter. Low values also affect the 'intensity' of the fog.|
 |`r.VolumetricFog.GridDivisor`|256| (120)|Decreases the percievable noise. Lower values increases noise and jitter, while higher values "supersamples" the fog resolution.|
 |`r.VolumetricFog.GridSizeZ`|128 (128)|Controls the fog resolution. Higher values are more intense.|
-|`r.MassiveEnvironment.UseHZBControlPoints`|0 (1)|A performance optimization to cull occluded objects. A lower quality mip will be loaded until the occluding object is removed out of the way. Unfortunately, this movement often causes the mip to jump quality, causing a pop-in. Costs about 2fps.|
+|`r.MassiveEnvironment.UseHZBControlPoints`|0 (1)|A performance optimization to cull occluded objects. A lower quality mip will be loaded until the occluding object is removed out of the way. Unfortunately, this movement often causes the mip to jump quality, causing a pop-in. Disabling costs about 2fps.|
 |`r.TemporalAASamples`|2 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of higher (but arguably unnoticeable) geometric aliasing, especially at lower resolutions.|
 |`r.TemporalAA.FilterSize.Alternative`|0.05 (1)|Anything lower will cause the whole screen to flicker or go black. It is dependent on the value above.|
 
