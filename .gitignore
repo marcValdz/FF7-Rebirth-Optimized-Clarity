@@ -1,7 +1,8 @@
 /pakchunk0-WindowsNoEditor/*
-/~mods/*
+WindowsNoEditor
+~mods
+
 *.bat
 *.exe
 *.pak
 *.lnk
-
