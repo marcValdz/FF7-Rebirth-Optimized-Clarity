@@ -10,13 +10,13 @@ Internally known as `sg.StaticMeshQuality`, this setting controls the LOD of eve
 |Setting|Low|Medium|High|Best||
 |--|--|--|--|--|--|
 |`r.Streaming.MassiveEnvironmentMipBiasForDeformMeshlets`|2 (-)|1 (-)|0 (-)|0 (-)|Higher values theoretically improve performance at the cost of worse quality mipmaps of animated objects (e.g. swaying tree trunks). Values above 2 or negative values completely cull these animated polygons.|
-|`r.Streaming.MassiveEnvironmentMipBias`|2 (-)|1 (-)|0 (-)|0 (-)|Higher values theoretically improve performance at the cost of worse quality mipmaps of animated objects (e.g. swaying tree trunks). Values above 2 or negative values completely cull these animated polygons.|
+|`r.Streaming.MassiveEnvironmentMipBias`|1 (-)|0 (-)|0 (-)|0 (-)|Higher values improve performance at the cost of worse quality mipmaps. Values > 0 can cause terrain to have 'gaps', while values above 2 looks too awful to be worth the FPS. Likewise, any negative value makes the polygons look like it came from PS2.|
 |`r.MeshletCulling.ViewLODScale`|1 (0.2)|1 (0.2)|1 (0.2)|1 (0.2)|Controls the LOD of light emitting Objects (e.g. light poles, lamps).|
 |`r.MassiveEnvironment.SimpleInstanceLODScale`|0.005 (-)|0.05 (-)|8 (-)|4 (-)|Separately controls the grass mip transition distance. The main cause of pop-in near the player's feet.|
 |`r.MassiveEnvironment.CoverageLODScale`|0.1 (-)|0.2 (-)|1 (-)|1 (-)|Controls the LOD of ALL vegetation (trees & grass). Affects the value above.|
 |`r.MassiveEnvironment.SolidLODScale`|0.2 (-)|0.3 (-)|1 (-)|1 (-)|Controls the LOD of Rocks and Buildings.|
 |`r.MassiveEnvironment.ViewLODScale`|1 (0.1)|1 (0.15)|0.3 (0.2)|0.5 (0.15)|Controls the LOD of every object within the MassiveEnvironment system. Encompasses both `CoverageLODScale` and `SolidLODScale` into a single value. These four LODScale values have a sort of 'budget' that needs to be balanced between each other, otherwise the dreaded grass flickering issue would occur.|
-|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.01 (0.05)|0.01 (0.025)|0.01 (0.015)|0.01 (0.01)|Controls the vegetation draw distance. No performance difference, yet causes an insane amount of pop-in.|
+|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.02 (0.05)|0.015 (0.025)|0.01 (0.015)|0.01 (0.01)|Controls the vegetation draw distance. No FPS difference, but can cause memory problems when set too high. Causes a lot of pop-in.|
 
 ## Character Model Detail
 Internally known as `sg.SkeletalMeshQuality`, this setting controls the NPC LOD.
@@ -31,7 +31,7 @@ Internally known as `sg.SkeletalMeshQuality`, this setting controls the NPC LOD.
 |`r.VolumetricFog.CheckerBoard`|1|0|Setting this to Low makes the volumetric fog use checkerboard rendering to save some FPS at the cost of increased flickering, pixelation, jitter, and ghosting near fog emitting objects.|
 
 # Engine.ini Tweaks
-These are optional cvars that aren't scalable. Unfortunately, we can only do so much to mitigate TAA's blurriness. UPDATE: Also moved shadow quality here.
+These are optional cvars that aren't scalable. Unfortunately, we can only do so much to mitigate TAA's blurriness.
 
 |Setting|Value||
 |--|--|--|
