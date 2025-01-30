@@ -11,7 +11,7 @@ Internally known as `sg.StaticMeshQuality`, this setting controls the LOD of eve
 |--|--|--|--|--|--|
 |`r.Streaming.MassiveEnvironmentPoolSizeMB`|(900)|(1600)|2000 (1600)|(2500)|Too low of a value can cause textures to alternate from high quality mips to very low quality mips.|
 |`r.Streaming.MassiveEnvironmentMipBiasForDeformMeshlets`|2 (-)|1 (-)|0 (-)|0 (-)|Higher values theoretically improve performance at the cost of worse quality mipmaps of animated objects (e.g. swaying tree trunks). Values above 2 or negative values completely cull these animated polygons.|
-|`r.Streaming.MassiveEnvironmentMipBias`|1 (-)|0 (-)|0 (-)|0 (-)|Higher values improve performance at the cost of worse quality mipmaps. Values > 0 can cause terrain to have 'gaps', while values above 2 looks too awful to be worth the FPS. Likewise, any negative value makes the polygons look like it came from PS2.|
+|`r.Streaming.MassiveEnvironmentMipBias`|0 (-)|0 (-)|0 (-)|0 (-)|Higher values improve performance at the cost of worse quality mipmaps. Values > 0 can cause terrain to have 'gaps', while values above 2 looks too awful to be worth the FPS. Likewise, any negative value makes the polygons look like it came from PS2.|
 |`r.MeshletCulling.ViewLODScale`|0.5 (0.2)|0.5 (0.2)|0.5 (0.2)|0.5 (0.2)|Controls the LOD of light emitting Objects (e.g. light poles, lamps).|
 |`r.MassiveEnvironment.ViewLODScale`|1 (0.1)|1 (0.15)|1 (0.2)|1 (0.15)|Controls the LOD of every object within the MassiveEnvironment system. Encompasses both `CoverageLODScale` and `SolidLODScale` into a single value. These four LODScale values have a sort of 'budget' that needs to be balanced between each other, otherwise the dreaded grass flickering issue would occur.|
 |`r.MassiveEnvironment.SolidLODScale`|0.1 (-)|0.2 (-)|0.3 (-)|0.5 (-)|Controls the LOD of Rocks and Buildings.|
@@ -41,7 +41,7 @@ These are optional cvars that aren't scalable. Unfortunately, we can only do so 
 |`r.VolumetricFog.DepthDistributionScale`|16 (32)| Too high or too low a value increases the jitter. Low values also affect the 'intensity' of the fog.|
 |`r.VolumetricFog.GridDivisor`|64 (120)|Decreases the percievable noise. Lower values increases noise and jitter, while higher values "supersamples" the fog resolution.|
 |`r.VolumetricFog.GridSizeZ`|64 (128)|Controls the fog resolution. Higher values are more intense.|
-|`r.MassiveEnvironment.UseHZBControlPoints`|0 (1)|A performance optimization to cull occluded objects. A lower quality mip will be loaded until the occluding object is removed out of the way. Unfortunately, this movement often causes the mip to jump quality, causing a pop-in. Disabling costs about 2fps.|
+|`r.MassiveEnvironment.UseHZBControlPoints`|1 (1)|A performance optimization to cull occluded objects. A lower quality mip will be loaded until the occluding object is removed out of the way. Unfortunately, this movement often causes the mip to jump quality, causing a pop-in. Disabling can cost upwards of 40fps depending on the scene.|
 |`r.TemporalAASamples`|2 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of higher (but arguably unnoticeable) geometric aliasing, especially at lower resolutions.|
 |`r.TemporalAA.FilterSize.Alternative`|0.05 (1)|Anything lower will cause the whole screen to flicker or go black. It is dependent on the value above.|
 
