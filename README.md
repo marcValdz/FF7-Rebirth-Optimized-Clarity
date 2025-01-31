@@ -41,7 +41,6 @@ These are optional cvars that aren't scalable. Unfortunately, we can only do so 
 |`r.VolumetricFog.DepthDistributionScale`|64 (32)| Too high or too low a value increases the jitter. Low values also affect the 'intensity' of the fog.|
 |`r.VolumetricFog.GridDivisor`|240 (120)|Decreases the percievable noise. Lower values increases noise and jitter, while higher values "supersamples" the fog resolution.|
 |`r.VolumetricFog.GridSizeZ`|256 (128)|Controls the fog resolution. Higher values are more intense.|
-|`r.MassiveEnvironment.UseHZBControlPoints`|1 (1)|A performance optimization to cull occluded objects. A lower quality mip will be loaded until the occluding object is removed out of the way. Unfortunately, this movement often causes the mip to jump quality, causing a pop-in. Disabling can cost upwards of 40fps depending on the scene.|
 |`r.TemporalAASamples`|2 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of higher (but arguably unnoticeable) geometric aliasing, especially at lower resolutions.|
 |`r.TemporalAA.FilterSize.Alternative`|0.05 (1)|Anything lower will cause the whole screen to flicker or go black. It is dependent on the value above.|
 
