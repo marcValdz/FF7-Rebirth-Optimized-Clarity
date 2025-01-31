@@ -1,11 +1,36 @@
 # A Scalability Mod for [FFVII Rebirth](https://store.steampowered.com/app/2909400/FINAL_FANTASY_VII_REBIRTH/)
-This mod improves upon the game's graphical scalability by providing better than console visuals at the highest settings, while also trying to provide an optimized Lowest preset for devices like the Steam Deck.
+The following write-up breaks down each relevant graphics setting to show what cvars they modify under the hood.
 
-# WindowsScalability.ini Tweaks
-The following modifications affect the in-game graphics options.
+## Screen Resolution
+|Setting||
+|--|--|
+|`r.RenderTargetPoolMin`|At 1080p and below, this value is set to `800`, at 1440p and higher, it's set to `1800`.|
+|`r.SetRes`|Controls the screen resolution.|
+|`r.CompositeLayer.FixedHeight`|At 1080p and below, this value is set to `1080`, at 1440p and higher, it's set to `2160`.|
+|`r.CompositeLayer.FixedWidth`|At 1080p and below, this value is set to `1920`, at 1440p and higher, it's set to `3840`.|
+
+## Framerate
+Controls `t.MaxFPS`
+
+## Display Sync Technology
+|Setting|VRR|V-Sync|
+|--|--|
+|`r.VSync`|0|1|
+
+## Brightness
+The slider sets this cvar: `r.DeviceCorrector.Brightness.Interpolation` from values 0 to 1 at 0.1 intervals.
+
+## HDR Luminance
+The slider sets this this cvar: `r.DeviceCorrector.HDRStrength.Interpolation` from values 0 to 1 at 0.1 intervals.
+
+## Dynamic Resolution Scaling (Minimum & Maximum)
+|Setting|33%|50%|66%|100%|
+|--|--|--|--|--|
+|`r.DynamicRes.MaxScreenPercentage`|0.33|0.50|0.66|1|
+|`r.DynamicRes.MinScreenPercentage`|0.33|0.50|0.66|1|
 
 ## Background Model Detail
-Internally known as `sg.StaticMeshQuality`, this setting controls the LOD of everything except for NPC's. It also controls this cvar: `r.MassiveEnvironment.LODFixedViewHeight`. For resolutions >= 1440p, only Best sets this value to equal to your vertical resolution (so 1440:1440p, 2160:2160p), while High to Low sets this value to 1080 (so 1080:1440p, 1080:2160p).
+This setting controls the LOD of everything except for NPC's. It is the most expensive setting overall, but it also affects the game presentation the most. It controls these cvars through **Scalability** under `sg.StaticMeshQuality`:
 
 |Setting|Low|Medium|High|Best||
 |--|--|--|--|--|--|
@@ -19,6 +44,21 @@ Internally known as `sg.StaticMeshQuality`, this setting controls the LOD of eve
 |`r.MassiveEnvironment.SimpleInstanceLODScale`|0.001 (-)|0.01 (-)|6 (-)|2 (-)|Separately controls the grass mip transition distance. The main cause of pop-in near the player's feet.|
 |`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.02 (0.05)|0.012 (0.025)|0.011 (0.015)|0.01 (0.01)|Controls the vegetation draw distance. No FPS difference, but can cause memory problems when set too high. Causes a lot of pop-in.|
 
+Additionally, it also controls these cvars by **Code**:
+
+|Setting|Low|Medium|High|Best||
+|--|--|--|--|--|--|
+|`r.LimitScreenSizeForStreaming`|1920|1920|2560|2560||
+|`r.MassiveEnvironment.LODFixedViewHeight`|1080|1080|1080|1440|Modifying this value seems to act similarly to how ViewLODScale encompasses multiple LODScale values into one, except this one encompasses ALL of them.|
+|`r.MassiveEnvironment.TexelFactorFixedScreenSize`|1080|1080|1440|1440||
+
+The **Low** setting stands out as the only option that reduces vegetation density. By setting sg.StaticMeshQuality to 2 (Best), which ensures the highest LOD quality for Solid, Coverage, and SimpleInstance, a noticeable difference in grass visibility remains between the [Low and Medium](https://imgsli.com/MzQ0MzM4) settings.
+
+## Ocean Detail
+|Setting|Low|Medium|High||
+|--|--|--|--|--|
+|`r.Ocean.LevelShift`|2|1|0|Higher values reduce how 'ripply' the ocean waves are.|
+
 ## Character Model Detail
 Internally known as `sg.SkeletalMeshQuality`, this setting controls the NPC LOD.
 
@@ -26,25 +66,67 @@ Internally known as `sg.SkeletalMeshQuality`, this setting controls the NPC LOD.
 |--|--|--|--|
 |`r.SkeletalMeshLODBias`|0 (0.1)|0 (0)|Higher values make the NPCs look like they're from the PS2 era. No noticeable performance impact.|
 
+## Texture Resolution
+Known internally as `sg.TextureQuality`. It controls the following cvars:
+
+|Setting|Low|Medium|High|
+|--|--|--|--|
+|`r.Streaming.PoolSize`|1100|2700|4000|
+|`r.Streaming.MaxTempMemoryAllowed`|100|500|500|
+|`r.Streaming.TextureResidentLODBias`|1|0|0|
+|`r.Streaming.EnableTextureRuntimeLODBias`|1|1|0|
+
+## Shadow Quality
+By default, the game only modifies these cvars by **Code**:
+
+|Setting|Low|High|Best|Extreme||
+|--|--|--|--|--|--|
+|`r.Shadow.FixedScreenSizeForShadow`|1920|2560|2560|2560||
+|`sg.ShadowQuality`|0|1|2|3|Best and Extreme can be accessed by modifying GameUserSettings.ini or running this command: `sg.ShadowQuality`|
+
+With the mod, it now has **Scalability**:
+ 
+|Setting|Low|High|Best|Extreme||
+|--|--|--|--|--|--|
+|`r.Shadow.CSM.TransitionScale`|2 (-)|2 (-)|2 (-)|2 (-)|Unfortunately, the game doesn't allow increasing the shadow distance which limits how far the sharpest shadow cascade can be displayed. This setting should help hide the transition.|
+|`r.Shadow.MaxResolution`|1024 (-)|2048 (-)|4096 (-)|8192 (-)|Controls the resolution of spotlight shadows, most noticeable at night.|
+|`r.Shadow.MaxCSMResolution`|1024 (-)|2048 (-)|4096 (-)|8192 (-)|Controls the resolution of cascade shadow maps,  most noticeable at daytime.|
+|`r.Shadow.WholeSceneShadowCacheMb`|75 (-)|150 (-)|300 (-)|600 (-)|Too low of a value causes the shadows to flicker.|
+
+Additionally, I've decided to bind the Fog Quality within `sg.ShadowQuality` because the in-game Fog Quality setting doesn't use **Scalability**.
+
+|Setting|Low|High|Best|Extreme||
+|--|--|--|--|--|--|
+|`r.VolumetricFog.DepthDistributionScale`|16 (-)|32 (-)|48 (-)|64 (-)|Too high or too low a value increases the jitter. Too low of a values can also limit the 'intensity' of the fog.|
+|`r.VolumetricFog.GridDivisor`|60 (-)|120 (-)|180 (-)|240 (-)|Decreases the percievable noise. Lower values increases noise and jitter, while higher values "supersamples" the fog resolution.|
+|`r.VolumetricFog.GridSizeZ`|64 (-)|128 (-)|192 (-)|256 (-)|Controls the fog resolution. Higher values look more 'intense'.|
+
 ## Fog Quality
 |Setting|Low|High||
 |--|--|--|--|
 |`r.VolumetricFog.CheckerBoard`|1|0|Setting this to Low makes the volumetric fog use checkerboard rendering to save some FPS at the cost of increased flickering, pixelation, jitter, and ghosting near fog emitting objects.|
 
-# Engine.ini Tweaks
-These are optional cvars that aren't scalable. Unfortunately, we can only do so much to mitigate TAA's blurriness.
+## Anti-Aliasing Quality
+|Setting|TAA|TAAU|DLSS|
+|--|--|--|--|
+|`r.TemporalAA.Method`|0|1|3|
+
+## Low-Resolution Font
+This setting is only available at resolutions lower than 1080p, otherwise, it's greyed out.
+
+# DefaultEngine.ini Tweaks
+For cvars that aren't scalable.
 
 |Setting|Value||
 |--|--|--|
-|`r.Shadow.MaxCSMResolution`|(2048)/4096/8192|A value of 8192 is very expensive but it does improve shadows substantially. Any values greater than 8192 breaks the shadows. Likewise, values lower than 2048 are too low to properly display shadows.|
-|`r.Shadow.CSM.TransitionScale`|2|Unfortunately, the game doesn't allow increasing the shadow distance which limits how far the sharpest shadow cascade can be displayed. This setting should help hide the transition.|
-|`r.VolumetricFog.DepthDistributionScale`|64 (32)| Too high or too low a value increases the jitter. Low values also affect the 'intensity' of the fog.|
-|`r.VolumetricFog.GridDivisor`|240 (120)|Decreases the percievable noise. Lower values increases noise and jitter, while higher values "supersamples" the fog resolution.|
-|`r.VolumetricFog.GridSizeZ`|256 (128)|Controls the fog resolution. Higher values are more intense.|
-|`r.TemporalAASamples`|2 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of higher (but arguably unnoticeable) geometric aliasing, especially at lower resolutions.|
+|`r.Shadow.TexelsPerPixel`|5.09296||
+|`r.Shadow.TexelsPerPixelRectlight`|4.0||
+|`r.Shadow.TexelsPerPixelPointlight`|2.54648 (.63662)||
+|`r.Shadow.TexelsPerPixelSpotlight`|5.09296 (1.27324)|A high enough value allows higher resolution shadows to display properly.|
+|`r.TemporalAASamples`|2 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of lower (but arguably unnoticeable) geometric aliasing, more noticeable at lower resolutions.|
 |`r.TemporalAA.FilterSize.Alternative`|0.05 (1)|Anything lower will cause the whole screen to flicker or go black. It is dependent on the value above.|
 
-The following table shows the optimal values between these cvars:
+The following table shows the optimal values that avoid screen flicker:
 
 |`r.TemporalAASamples`|`r.TemporalAA.FilterSize.Alternative`|
 |--|--|
