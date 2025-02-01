@@ -24,6 +24,7 @@ The slider sets this cvar: `r.DeviceCorrector.Brightness.Interpolation` from val
 The slider sets this this cvar: `r.DeviceCorrector.HDRStrength.Interpolation` from values 0 to 1 at 0.1 intervals.
 
 ## Dynamic Resolution Scaling (Minimum & Maximum)
+
 |Setting|33%|50%|66%|100%|
 |--|--|--|--|--|
 |`r.DynamicRes.MaxScreenPercentage`|0.33|0.50|0.66|1|
