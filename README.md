@@ -91,7 +91,7 @@ With the mod, it now has **Scalability**:
 |`r.Shadow.CSM.TransitionScale`|2 (-)|2 (-)|2 (-)|2 (-)|Unfortunately, the game doesn't allow increasing the shadow distance which limits how far the sharpest shadow cascade can be displayed. This setting should help hide the transition.|
 |`r.Shadow.MaxResolution`|1024 (-)|2048 (-)|4096 (-)|8192 (-)|Controls the resolution of spotlight shadows, most noticeable at night.|
 |`r.Shadow.MaxCSMResolution`|1024 (-)|2048 (-)|4096 (-)|8192 (-)|Controls the resolution of cascade shadow maps,  most noticeable at daytime.|
-|`r.Shadow.WholeSceneShadowCacheMb`|75 (-)|150 (-)|300 (-)|600 (-)|Too low of a value causes the shadows to flicker.|
+|`r.Shadow.WholeSceneShadowCacheMb`|30 (-)|60 (-)|120 (-)|240 (-)|Too low of a value causes the shadows to flicker.|
 
 Additionally, I've decided to bind the Fog Quality within `sg.ShadowQuality` because the in-game Fog Quality setting doesn't use **Scalability**.
 
@@ -119,10 +119,10 @@ For cvars that aren't scalable.
 
 |Setting|Value||
 |--|--|--|
-|`r.Shadow.TexelsPerPixel`|5.09296||
-|`r.Shadow.TexelsPerPixelRectlight`|4.0||
-|`r.Shadow.TexelsPerPixelPointlight`|2.54648 (.63662)||
-|`r.Shadow.TexelsPerPixelSpotlight`|5.09296 (1.27324)|A high enough value allows higher resolution shadows to display properly.|
+|`r.Shadow.TexelsPerPixel`|3.2||
+|`r.Shadow.TexelsPerPixelRectlight`|3.2||
+|`r.Shadow.TexelsPerPixelPointlight`|3.2 (.63662)||
+|`r.Shadow.TexelsPerPixelSpotlight`|3.2 (1.27324)|A high enough value allows higher resolution shadows to display properly.|
 |`r.TemporalAASamples`|2 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of lower (but arguably unnoticeable) geometric aliasing, more noticeable at lower resolutions.|
 |`r.TemporalAA.FilterSize.Alternative`|0.05 (1)|Anything lower will cause the whole screen to flicker or go black. It is dependent on the value above.|
 
