@@ -92,7 +92,7 @@ With the mod, it now has **Scalability**:
 |`r.Shadow.CSM.TransitionScale`|2 (-)|2 (-)|2 (-)|2 (-)|Unfortunately, the game doesn't allow increasing the shadow distance which limits how far the sharpest shadow cascade can be displayed. This setting should help hide the transition.|
 |`r.Shadow.MaxResolution`|1024 (-)|2048 (-)|4096 (-)|8192 (-)|Controls the resolution of spotlight shadows, most noticeable at night.|
 |`r.Shadow.MaxCSMResolution`|1024 (-)|2048 (-)|4096 (-)|8192 (-)|Controls the resolution of cascade shadow maps,  most noticeable at daytime.|
-|`r.Shadow.WholeSceneShadowCacheMb`|30 (-)|60 (-)|120 (-)|240 (-)|Too low of a value causes the shadows to flicker.|
+|`r.Shadow.WholeSceneShadowCacheMb`|256 (-)|512 (-)|1024 (-)|2048 (-)|Too low of a value causes the shadows to flicker.|
 
 Additionally, I've decided to bind the Fog Quality within `sg.ShadowQuality` because the in-game Fog Quality setting doesn't use **Scalability**.
 
