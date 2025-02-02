@@ -120,9 +120,9 @@ For cvars that aren't scalable.
 
 |Setting|Value||
 |--|--|--|
-|`r.Shadow.TexelsPerPixel`|3.2||
-|`r.Shadow.TexelsPerPixelRectlight`|3.2||
-|`r.Shadow.TexelsPerPixelPointlight`|3.2 (.63662)||
-|`r.Shadow.TexelsPerPixelSpotlight`|3.2 (1.27324)|A high enough value allows higher resolution shadows to display properly.|
+|`r.Shadow.TexelsPerPixel`|6.4||
+|`r.Shadow.TexelsPerPixelRectlight`|6.4||
+|`r.Shadow.TexelsPerPixelPointlight`|6.4 (.63662)||
+|`r.Shadow.TexelsPerPixelSpotlight`|6.4 (1.27324)|A high enough value allows higher resolution shadows to display properly.|
 |`r.TemporalAASamples`|4 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of lower (but arguably unnoticeable) geometric aliasing, more noticeable at lower resolutions.|
 |`r.TemporalAA.FilterSize.Alternative`|0.1 (1)|Anything lower will cause the whole screen to flicker or go black. It is dependent on the value above.|
