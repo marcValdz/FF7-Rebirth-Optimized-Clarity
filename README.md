@@ -39,10 +39,10 @@ This setting controls the LOD of everything except for NPC's. It is the most exp
 |`r.Streaming.MassiveEnvironmentMipBiasForDeformMeshlets`|2 (-)|1 (-)|0 (-)|0 (-)|Higher values theoretically improve performance at the cost of worse quality mipmaps of animated objects (e.g. swaying tree trunks). Values above 2 or negative values completely cull these animated polygons.|
 |`r.MeshletCulling.ViewLODScale`|0.5 (0.2)|0.5 (0.2)|0.5 (0.2)|0.5 (0.2)|Controls the LOD of light emitting Objects (e.g. light poles, lamps).|
 |`r.MassiveEnvironment.ViewLODScale`|1 (0.1)|1 (0.15)|1 (0.2)|1 (0.15)|Controls the LOD of every object within the MassiveEnvironment system. Encompasses both `CoverageLODScale` and `SolidLODScale` into a single value. These four LODScale values have a sort of 'budget' that needs to be balanced between each other, otherwise the dreaded grass flickering issue would occur.|
-|`r.MassiveEnvironment.SolidLODScale`|0.3 (-)|0.4 (-)|0.6 (-)|1 (-)|Controls the LOD of Rocks and Buildings.|
+|`r.MassiveEnvironment.SolidLODScale`|0.3 (-)|0.4 (-)|0.6 (-)|0.5 (-)|Controls the LOD of Rocks and Buildings.|
 |`r.MassiveEnvironment.CoverageLODScale`|0.1 (-)|0.2 (-)|0.5 (-)|1 (-)|Controls the LOD of ALL vegetation (trees & grass). Affects the value below.|
 |`r.MassiveEnvironment.SimpleInstanceLODScale`|0.001 (-)|0.01 (-)|5.3 (-)|2 (-)|Separately controls the grass mip transition distance. The main cause of pop-in near the player's feet.|
-|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.020 (0.05)|0.019 (0.025)|0.018 (0.015)|0.017 (0.01)|Controls the vegetation draw distance. Can cause grass flickering problems when set too high. Causes a lot of pop-in.|
+|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.020 (0.05)|0.019 (0.025)|0.019 (0.015)|0.019 (0.01)|Controls the vegetation draw distance. Can cause grass flickering problems when set too high. Causes a lot of pop-in.|
 
 Additionally, it also controls these cvars by **Code**:
 
