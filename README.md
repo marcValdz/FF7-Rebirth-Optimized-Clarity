@@ -65,7 +65,7 @@ Internally known as `sg.SkeletalMeshQuality`, this setting controls the NPC LOD.
 
 |Setting|Low|High||
 |--|--|--|--|
-|`r.SkeletalMeshLODBias`|0 (0.1)|0 (0)|Higher values make the NPCs look like they're from the PS2 era. No noticeable performance impact.|
+|`r.SkeletalMeshLODBias`|0 (0.1)|-1 (0)|Values > 0 make the NPCs look like they're from the PS2 era. Values < 0 increase the distance at which higher quality normal maps are loaded (I've only noticed it on Cloud's Buster sword on his back). No noticeable performance impact. |
 
 ## Texture Resolution
 Known internally as `sg.TextureQuality`. It controls the following cvars:
