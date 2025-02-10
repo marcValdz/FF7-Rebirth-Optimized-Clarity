@@ -14,7 +14,7 @@ Controls `t.MaxFPS`
 
 ## Display Sync Technology
 |Setting|VRR|V-Sync|
-|--|--|
+|--|--|--|
 |`r.VSync`|0|1|
 
 ## Brightness
