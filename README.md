@@ -42,7 +42,7 @@ This setting controls the LOD of everything except for NPC's. It is the most exp
 |`r.MassiveEnvironment.SolidLODScale`|0.3 (-)|0.4 (-)|0.6 (-)|0.5 (-)|Controls the LOD of Rocks and Buildings.|
 |`r.MassiveEnvironment.CoverageLODScale`|0.1 (-)|0.2 (-)|0.5 (-)|1 (-)|Controls the LOD of ALL vegetation (trees & grass). Affects the value below.|
 |`r.MassiveEnvironment.SimpleInstanceLODScale`|0.001 (-)|0.01 (-)|5.3 (-)|2 (-)|Separately controls the grass mip transition distance. The main cause of pop-in near the player's feet.|
-|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.020 (0.05)|0.019 (0.025)|0.019 (0.015)|0.019 (0.01)|Controls the vegetation draw distance. Can cause grass flickering problems when set too high. Causes a lot of pop-in.|
+|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.02 (0.05)|0.012 (0.025)|0.011 (0.015)|0.01 (0.01)|Controls the vegetation draw distance. Can cause grass flickering problems when set too high. Causes a lot of pop-in.|
 
 Additionally, it also controls these cvars by **Code**:
 
