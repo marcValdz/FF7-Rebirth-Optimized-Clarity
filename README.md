@@ -77,7 +77,7 @@ Known internally as `sg.TextureQuality`. It controls the following cvars:
 |`r.Streaming.EnableTextureRuntimeLODBias`|1|1|0|
 |`r.Streaming.AmortizeCPUToGPUCopy`|1 (-)|1 (-)|1 (-)|Has no effect unless the cvar below is set to a value other than 0.|
 |`r.Streaming.MaxNumTexturesToStreamPerFrame`|8 (-)|16 (-)|32 (-)|0 is infinite. Values less than 4 causes the texture streaming to stall (delayed texture loading). Don't know if it has a beneficial effect on performance that makes that slow texture loading worthwhile.|
-|`r.Streaming.LimitPoolSizeToVRAM`|1 (-)|1 (-)|1 (-)|Setting this to 0 might only be beneficial for GPUs with more than 20GB of VRAM, otherwise, it's 1.|
+|`r.Streaming.LimitPoolSizeToVRAM`|1 (-)|1 (-)|1 (-)|By default, this setting is set to 0 which might only be beneficial for GPUs with more than 20GB of VRAM, otherwise, it should probably be 1.|
 
 ## Shadow Quality
 By default, the game only modifies these cvars by **Code**:
