@@ -69,12 +69,15 @@ Internally known as `sg.SkeletalMeshQuality`, this setting controls the NPC LOD.
 ## Texture Resolution
 Known internally as `sg.TextureQuality`. It controls the following cvars:
 
-|Setting|Low|Medium|High|
-|--|--|--|--|
-|`r.Streaming.PoolSize`|1100|2700|4000|
-|`r.Streaming.MaxTempMemoryAllowed`|100|500|500|
+|Setting|Low|Medium|High||
+|--|--|--|--|--|
+|`r.Streaming.PoolSize`|2048 (1100)|4096 (2700)|8192 (4000)|I've increased the streaming pool size across the board to hopefully help with loading 4K LODs from HD mods.|
+|`r.Streaming.MaxTempMemoryAllowed`|100|400 (500)|1600 (500)|
 |`r.Streaming.TextureResidentLODBias`|1|0|0|
 |`r.Streaming.EnableTextureRuntimeLODBias`|1|1|0|
+|`r.Streaming.AmortizeCPUToGPUCopy`|1 (-)|1 (-)|1 (-)|Has no effect unless the cvar below is set to a value other than 0.|
+|`r.Streaming.MaxNumTexturesToStreamPerFrame`|8 (-)|16 (-)|32 (-)|0 is infinite. Values less than 4 causes the texture streaming to stall (delayed texture loading). Don't know if it has a beneficial effect on performance that makes that slow texture loading worthwhile.|
+|`r.Streaming.LimitPoolSizeToVRAM`|1 (-)|1 (-)|1 (-)|Setting this to 0 might only be beneficial for GPUs with more than 20GB of VRAM, otherwise, it's 1.|
 
 ## Shadow Quality
 By default, the game only modifies these cvars by **Code**:
