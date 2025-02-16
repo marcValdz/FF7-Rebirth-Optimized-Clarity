@@ -37,20 +37,20 @@ This setting controls the LOD of everything except for NPC's. It is the most exp
 |--|--|--|--|--|--|
 |`r.Streaming.MassiveEnvironmentPoolSizeMB`|1300 (900)|(1600)|2000 (1600)|(2500)|Too low of a value can cause textures to alternate from high quality mips to very low quality mips.|
 |`r.Streaming.MassiveEnvironmentMipBiasForDeformMeshlets`|2 (-)|1 (-)|0 (-)|0 (-)|Higher values theoretically improve performance at the cost of worse quality mipmaps of animated objects (e.g. swaying tree trunks). Values above 2 or negative values completely cull these animated polygons.|
-|`r.MeshletCulling.ViewLODScale`|0.5 (0.2)|0.5 (0.2)|0.5 (0.2)|0.5 (0.2)|Controls the LOD of light emitting Objects (e.g. light poles, lamps).|
+|`r.MeshletCulling.ViewLODScale`|0.25 (0.2)|0.33 (0.2)|0.5 (0.2)|1 (0.2)|Controls the LOD of light emitting Objects (e.g. light poles, lamps).|
 |`r.MassiveEnvironment.ViewLODScale`|1 (0.1)|1 (0.15)|1 (0.2)|1 (1)|Controls the LOD of every object within the MassiveEnvironment system. Encompasses both `CoverageLODScale` and `SolidLODScale` into a single value. These four LODScale values have a sort of 'budget' that needs to be balanced between each other, otherwise the dreaded grass flickering issue would occur.|
-|`r.MassiveEnvironment.SolidLODScale`|0.3 (-)|0.4 (-)|0.6 (-)|0.5 (-)|Controls the LOD of Rocks and Buildings.|
-|`r.MassiveEnvironment.CoverageLODScale`|0.1 (-)|0.2 (-)|0.5 (-)|1 (-)|Controls the LOD of ALL vegetation (trees & grass). Affects the value below.|
-|`r.MassiveEnvironment.SimpleInstanceLODScale`|0.001 (-)|0.01 (-)|5.3 (-)|2 (-)|Separately controls the grass mip transition distance. The main cause of pop-in near the player's feet.|
-|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.02 (0.05)|0.012 (0.025)|0.011 (0.015)|0.01 (0.01)|Controls the vegetation draw distance. Can cause grass flickering problems when set too high. Causes a lot of pop-in.|
+|`r.MassiveEnvironment.SolidLODScale`|0.2 (-)|0.4 (-)|0.6 (-)|1 (-)|Controls the LOD of Rocks and Buildings.|
+|`r.MassiveEnvironment.CoverageLODScale`|0.25 (-)|0.33 (-)|0.5 (-)|1 (-)|Controls the LOD of ALL vegetation (trees & grass). Affects the value below.|
+|`r.MassiveEnvironment.SimpleInstanceLODScale`|2 (-)|3 (-)|4 (-)|4 (-)|Separately controls the grass mip transition distance. The main cause of pop-in near the player's feet.|
+|`r.MassiveEnvironment.ControlPointScreenSizeThresholdForSimpleInstance`|0.024 (0.05)|0.020 (0.025)|0.016 (0.015)|0.012 (0.01)|Controls the vegetation draw distance. Can cause grass flickering problems when set too high. Causes a lot of pop-in.|
 
-Additionally, it also controls these cvars by **Code**:
+Additionally, it also controls these cvars by **Code**. As of update 2.0, these values are now locked to 1080p inside **DefaultEngine.ini**:
 
 |Setting|Low|Medium|High|Best||
 |--|--|--|--|--|--|
-|`r.LimitScreenSizeForStreaming`|1920|1920|2560|2560||
-|`r.MassiveEnvironment.LODFixedViewHeight`|1080|1080|1080|1440|Modifying this value seems to act similarly to how ViewLODScale encompasses multiple LODScale values into one, except this one encompasses ALL of them.|
-|`r.MassiveEnvironment.TexelFactorFixedScreenSize`|1080|1080|1440|1440||
+|`r.LimitScreenSizeForStreaming`|1920|1920|1920 (2560)|1920 (2560)||
+|`r.MassiveEnvironment.LODFixedViewHeight`|1080|1080|1080|1080 (1440)|Modifying this value seems to act similarly to how ViewLODScale encompasses multiple LODScale values into one, except this one encompasses ALL of them.|
+|`r.MassiveEnvironment.TexelFactorFixedScreenSize`|1080|1080|1080 (1440)|1080 (1440)||
 
 The **Low** setting stands out as the only option that reduces vegetation density. By setting sg.StaticMeshQuality to 2 (Best), which ensures the highest LOD quality for Solid, Coverage, and SimpleInstance, a noticeable difference in grass visibility remains between the [Low and Medium](https://imgsli.com/MzQ0MzM4) settings.
 
@@ -76,7 +76,7 @@ Known internally as `sg.TextureQuality`. It controls the following cvars:
 |`r.Streaming.TextureResidentLODBias`|1|0|0|
 |`r.Streaming.EnableTextureRuntimeLODBias`|1|1|0|
 |`r.Streaming.AmortizeCPUToGPUCopy`|1 (-)|1 (-)|1 (-)|Has no effect unless the cvar below is set to a value other than 0.|
-|`r.Streaming.MaxNumTexturesToStreamPerFrame`|8 (-)|16 (-)|32 (-)|0 is infinite. Values less than 4 causes the texture streaming to stall (delayed texture loading). Don't know if it has a beneficial effect on performance that makes that slow texture loading worthwhile.|
+|`r.Streaming.MaxNumTexturesToStreamPerFrame`|4 (-)|16 (-)|64 (-)|0 is infinite. Values less than 4 causes the texture streaming to stall (delayed texture loading). Don't know if it has a beneficial effect on performance that makes that slow texture loading worthwhile.|
 |`r.Streaming.LimitPoolSizeToVRAM`|1 (-)|1 (-)|1 (-)|By default, this setting is set to 0 which might only be beneficial for GPUs with more than 20GB of VRAM, otherwise, it should probably be 1.|
 
 ## Shadow Quality
