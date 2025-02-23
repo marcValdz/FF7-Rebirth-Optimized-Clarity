@@ -48,7 +48,6 @@ Additionally, it also controls these cvars by **Code**. As of update 2.0, these 
 
 |Setting|Low|Medium|High|Best||
 |--|--|--|--|--|--|
-|`r.LimitScreenSizeForStreaming`|1920|1920|1920 (2560)|1920 (2560)||
 |`r.MassiveEnvironment.LODFixedViewHeight`|1080|1080|1080|1080 (1440)|Modifying this value seems to act similarly to how ViewLODScale encompasses multiple LODScale values into one, except this one encompasses ALL of them.|
 |`r.MassiveEnvironment.TexelFactorFixedScreenSize`|1080|1080|1080 (1440)|1080 (1440)||
 
