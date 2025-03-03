@@ -77,6 +77,7 @@ Known internally as `sg.TextureQuality`. It controls the following cvars:
 |`r.Streaming.AmortizeCPUToGPUCopy`|1 (-)|1 (-)|1 (-)|Has no effect unless the cvar below is set to a value other than 0.|
 |`r.Streaming.MaxNumTexturesToStreamPerFrame`|4 (-)|16 (-)|64 (-)|0 is infinite. Values less than 4 causes the texture streaming to stall (delayed texture loading). Don't know if it has a beneficial effect on performance that makes that slow texture loading worthwhile.|
 |`r.Streaming.LimitPoolSizeToVRAM`|1 (-)|1 (-)|1 (-)|By default, this setting is set to 0 which might only be beneficial for GPUs with more than 20GB of VRAM, otherwise, it should probably be 1.|
+|`r.Streaming.Boost`|1 (-)|2 (-)|10 (-)|Significantly improves the texture loading speed of the 3D models in the Accessories menu.|
 
 ## Shadow Quality
 By default, the game only modifies these cvars by **Code**:
@@ -125,5 +126,7 @@ For cvars that aren't scalable.
 |`r.Shadow.TexelsPerPixelRectlight`|6.4||
 |`r.Shadow.TexelsPerPixelPointlight`|6.4 (.63662)||
 |`r.Shadow.TexelsPerPixelSpotlight`|6.4 (1.27324)|A high enough value allows higher resolution shadows to display properly.|
+|`r.Streaming.FramesForFullUpdate`|0 (5)|This should further speed up texture loading. A value of zero would try to update all texture every frame.|
+|`r.Streaming.HiddenPrimitiveScale`|1 (0.5)|By default, when an object is occluded, it's texture will drop 1 mip. Setting this to 1 would force the highest texture resolution regardless of visibility.|
 |`r.TemporalAASamples`|4 (8)|Lowers the amount of TAA (not TAAU) jitter at the cost of lower (but arguably unnoticeable) geometric aliasing, more noticeable at lower resolutions.|
 |`r.TemporalAA.FilterSize.Alternative`|0.1 (1)|Anything lower will cause the whole screen to flicker or go black. It is dependent on the value above.|
